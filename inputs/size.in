@@ -1,5 +1,9 @@
 SIZE
+EMPTY
 INSERT living
+EMPTY
+ERASE living
+EMPTY
 SIZE
 INSERT living,animal
 SIZE

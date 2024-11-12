@@ -64,6 +64,7 @@ int main()
 		}
 		else if (command == "EXIT")
 		{
+			cout << "exit" << endl;
 			break;
 		}
 	}

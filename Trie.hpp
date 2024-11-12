@@ -12,6 +12,8 @@ private:
     TrieNode *root;
     int size;
 
+    void printHelper(TrieNode *node, string &currentClassification, vector<string> &classifications) const;
+
 public:
     Trie();
     ~Trie();
@@ -20,9 +22,7 @@ public:
     bool insert(const string &classification);
     bool erase(const string &classification);
     string classify(const string &input);
-    void printHelper(TrieNode *node, string &currentClassification, vector<string> &classifications) const;
     void print() const;
-    bool empty() const;
     void clear();
     int getSize() const;
 };

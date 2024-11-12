@@ -100,7 +100,7 @@ void Classifier::print() const
 
 bool Classifier::empty() const
 {
-    return trie->empty();
+    return trie->getSize() == 0;
 }
 
 void Classifier::clear()

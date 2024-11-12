@@ -30,6 +30,7 @@ void Trie::setTerminal(TrieNode *node, bool terminal)
 bool Trie::insert(const string &classification)
 {
     TrieNode *current = root;
+    TrieNode *addedChild = nullptr;
     istringstream stream(classification);
     string label;
 
@@ -75,7 +76,7 @@ bool Trie::erase(const string &classification)
     {
         return false;
     }
-    parent->removeChild(label);
+    parent->removeChild(current);
 
     if (parent->hasChildren())
     {
@@ -161,11 +162,6 @@ void Trie::print() const
         cout << classifications[i] << "_";
     }
     cout << endl;
-}
-
-bool Trie::empty() const
-{
-    return !root->hasChildren();
 }
 
 void Trie::clear()

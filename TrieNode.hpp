@@ -11,6 +11,7 @@ class TrieNode
 private:
     static constexpr int MAX_CHILDREN = 15;
     vector<TrieNode *> children;
+    int numChildren = 0;
     string label = "";
     bool terminalStatus = false;
 
@@ -22,7 +23,7 @@ public:
     void setTerminal(bool terminal);
     bool isChild(string label) const;
     bool addChild(string label);
-    bool removeChild(string label);
+    bool removeChild(TrieNode *child);
     bool hasChildren() const;
     TrieNode *getChild(string label) const;
     string getChildrenString() const;

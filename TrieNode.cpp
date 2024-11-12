@@ -9,7 +9,10 @@ TrieNode::~TrieNode()
 {
     for (TrieNode *child : children)
     {
-        delete child;
+        if (child != nullptr)
+        {
+            delete child;
+        }
     }
 }
 
@@ -42,26 +45,33 @@ bool TrieNode::addChild(string label)
         return false;
     }
 
-    for (int i = 0; i < children.size(); i++)
+    if (numChildren + 1 > MAX_CHILDREN)
     {
-        if (children[i] == nullptr)
-        {
-            children[i] = new TrieNode();
-            children[i]->label = label;
-            return true;
-        }
+        return false;
+    }
+
+    if (children[numChildren] == nullptr)
+    {
+        children[numChildren] = new TrieNode();
+        children[numChildren]->label = label;
+        numChildren++;
+        return true;
     }
     return false;
 }
 
-bool TrieNode::removeChild(string label)
+bool TrieNode::removeChild(TrieNode *child)
 {
-    for (int i = 0; i < children.size(); i++)
+    if (child == nullptr)
     {
-        if (children[i] != nullptr && children[i]->label == label)
+        return false;
+    }
+    for (TrieNode *&node : children)
+    {
+        if (node == child)
         {
-            delete children[i];
-            children[i] = nullptr;
+            delete node;
+            node = nullptr;
             return true;
         }
     }
