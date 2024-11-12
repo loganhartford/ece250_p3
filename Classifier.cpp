@@ -95,7 +95,7 @@ string Classifier::erase(const string &classification)
 
 void Classifier::print() const
 {
-    trie->print();
+    cout << trie->print() << endl;
 }
 
 bool Classifier::empty() const

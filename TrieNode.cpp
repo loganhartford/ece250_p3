@@ -81,14 +81,7 @@ bool TrieNode::removeChild(TrieNode *child)
 
 bool TrieNode::hasChildren() const
 {
-    for (TrieNode *child : children)
-    {
-        if (child != nullptr)
-        {
-            return true;
-        }
-    }
-    return false;
+    return numChildren > 0;
 }
 
 TrieNode *TrieNode::getChild(string label) const

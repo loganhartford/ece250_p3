@@ -147,24 +147,24 @@ void Trie::printHelper(TrieNode *node, string &currentClassification, vector<str
     }
 }
 
-void Trie::print() const
+string Trie::print() const
 {
     if (!root->hasChildren())
     {
-        cout << "trie is empty" << endl;
-        return;
+        return "trie is empty";
     }
 
     vector<string> classifications;
     string currentClassification;
+    string returnString = "";
 
     printHelper(root, currentClassification, classifications);
 
     for (size_t i = 0; i < classifications.size(); ++i)
     {
-        cout << classifications[i] << "_";
+        returnString += classifications[i] + "_";
     }
-    cout << endl;
+    return returnString;
 }
 
 void Trie::clear()

@@ -22,7 +22,7 @@ public:
     bool insert(const string &classification);
     bool erase(const string &classification);
     string classify(const string &input);
-    void print() const;
+    string print() const;
     void clear();
     int getSize() const;
 };
