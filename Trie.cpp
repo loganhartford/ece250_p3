@@ -39,7 +39,10 @@ bool Trie::insert(const string &classification)
     {
         if (!current->isChild(label))
         {
-            current->addChild(label);
+            if (!current->addChild(label))
+            {
+                return false;
+            }
         }
         // Internal nodes can't be terminal
         setTerminal(current, false);

@@ -72,6 +72,7 @@ bool TrieNode::removeChild(TrieNode *child)
         {
             delete node;
             node = nullptr;
+            numChildren--;
             return true;
         }
     }
