@@ -1,16 +1,13 @@
-INSERT class1
-INSERT class2
-INSERT class3
-INSERT class4
-INSERT class5
-INSERT class6
-INSERT class7
-INSERT class8
-INSERT class9
-INSERT class10
-INSERT class11
-INSERT class12
-INSERT class13
-INSERT class14
-INSERT class15
-INSERT class16
+SIZE
+EMPTY
+INSERT living
+INSERT living2
+INSERT living,animal
+EMPTY
+SIZE
+ERASE living,animal
+ERASE living
+ERASE living2
+EMPTY
+SIZE
+EXIT

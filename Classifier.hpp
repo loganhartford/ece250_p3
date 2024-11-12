@@ -11,11 +11,12 @@ class Classifier
 private:
     Trie *trie;
 
+    void validateInput(const string &input);
+
 public:
     Classifier();
     ~Classifier();
 
-    void validateInput(const string &input);
     void load(const string &filename);
     string insert(const string &classification);
     string classify(const string &input);

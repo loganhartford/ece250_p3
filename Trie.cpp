@@ -79,13 +79,21 @@ bool Trie::erase(const string &classification)
     {
         return false;
     }
-    parent->removeChild(current);
+
+    if (parent->removeChild(current))
+    {
+        size--;
+    }
+    else
+    {
+        return false;
+    }
 
     if (parent->hasChildren())
     {
         setTerminal(parent, false);
     }
-    else
+    else if (parent != root)
     {
         setTerminal(parent, true);
     }
