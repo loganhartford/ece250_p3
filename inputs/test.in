@@ -1,0 +1,3 @@
+LOAD simple_classes.txt
+CLASSIFY dog
+EXIT

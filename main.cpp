@@ -1,27 +1,71 @@
-#include "ece250_socket.h"
 #include <iostream>
-#include <sstream> //new include!
+#include <sstream>
+#include <string>
+using namespace std;
+
+#include "Classifier.hpp"
 
 int main()
 {
-	// Just for fun, let's reclassify "Dog"
-	std::string text_to_classify = "Dog";
-	std::string candidate_labels = "mamal,bird,fish";
-	std::cout << labelText(text_to_classify, candidate_labels) << std::endl;
+	Classifier classifier;
+	string command_line, command, argument;
 
-	// OK, now let's split a string. In fact, let's split candidate_labels
+	while (getline(cin, command_line))
+	{
+		istringstream command_stream(command_line);
+		command_stream >> command;
 
-	// // step 1: make a new stringstring with the contents of our candidate_labels
-	// std::istringstream stream(candidate_labels); // I could have named it anything, like stringin or something
-
-	// // step 2: make a temporary string that we will use to store the extracted parts
-	// std::string single_label;
-
-	// // step 3: use the getline function with the comma sent in as a delimiter to read the string parts
-	// while (std::getline(stream, single_label, ','))
-	// {
-	// 	std::cout << single_label << std::endl; // and let's print it just to make sure it worked
-	// }
+		if (command == "LOAD")
+		{
+			command_stream >> argument;
+			classifier.load(argument);
+			cout << "success" << endl;
+		}
+		else if (command == "INSERT")
+		{
+			string classification;
+			if (getline(command_stream, classification))
+			{
+				cout << classifier.insert(classification) << endl;
+			}
+		}
+		else if (command == "CLASSIFY")
+		{
+			string input, output;
+			if (getline(command_stream, input))
+			{
+				cout << classifier.classify(input) << endl;
+			}
+		}
+		else if (command == "ERASE")
+		{
+			string classification;
+			if (getline(command_stream, classification))
+			{
+				cout << classification << endl;
+			}
+		}
+		else if (command == "PRINT")
+		{
+			classifier.print();
+		}
+		else if (command == "EMPTY")
+		{
+			cout << "empty " << endl;
+		}
+		else if (command == "CLEAR")
+		{
+			cout << "success" << endl;
+		}
+		else if (command == "SIZE")
+		{
+			cout << "number of classifications is " << endl;
+		}
+		else if (command == "EXIT")
+		{
+			break;
+		}
+	}
 
 	return 0;
 }

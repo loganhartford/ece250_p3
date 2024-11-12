@@ -14,14 +14,17 @@ private:
 
 public:
     string label;
-    bool terminal;
+    bool isTerminal;
 
     TrieNode();
     ~TrieNode();
 
     bool isChild(string label);
     bool addChild(string label);
+    bool removeChild(string label);
+    bool hasChildren();
     TrieNode *getChild(string label);
+    string getChildrenString();
     vector<TrieNode *> getChildren();
 };
 
