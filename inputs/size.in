@@ -1,0 +1,15 @@
+SIZE
+INSERT living
+SIZE
+INSERT living,animal
+SIZE
+INSERT non living
+SIZE
+ERASE living
+INSERT non living,furniture
+PRINT
+SIZE
+INSERT non living,decor
+PRINT
+SIZE
+EXIT

@@ -10,11 +10,13 @@ class Trie
 {
 private:
     TrieNode *root;
+    int size;
 
 public:
     Trie();
     ~Trie();
 
+    void setTerminal(TrieNode *node, bool terminal);
     bool insert(const string &classification);
     bool erase(const string &classification);
     string classify(const string &input);
@@ -22,7 +24,7 @@ public:
     void print() const;
     bool empty() const;
     void clear();
-    int size() const;
+    int getSize() const;
 };
 
 #endif

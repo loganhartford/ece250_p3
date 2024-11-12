@@ -2,8 +2,6 @@
 
 TrieNode::TrieNode()
 {
-    label = "";
-    isTerminal = false;
     children.resize(MAX_CHILDREN, nullptr);
 }
 
@@ -15,7 +13,17 @@ TrieNode::~TrieNode()
     }
 }
 
-bool TrieNode::isChild(string label)
+bool TrieNode::isTerminal() const
+{
+    return terminalStatus;
+}
+
+void TrieNode::setTerminal(bool terminal)
+{
+    terminalStatus = terminal;
+}
+
+bool TrieNode::isChild(string label) const
 {
     for (TrieNode *child : children)
     {
@@ -60,7 +68,7 @@ bool TrieNode::removeChild(string label)
     return false;
 }
 
-bool TrieNode::hasChildren()
+bool TrieNode::hasChildren() const
 {
     for (TrieNode *child : children)
     {
@@ -72,7 +80,7 @@ bool TrieNode::hasChildren()
     return false;
 }
 
-TrieNode *TrieNode::getChild(string label)
+TrieNode *TrieNode::getChild(string label) const
 {
     for (TrieNode *child : children)
     {
@@ -84,7 +92,7 @@ TrieNode *TrieNode::getChild(string label)
     return nullptr;
 }
 
-string TrieNode::getChildrenString()
+string TrieNode::getChildrenString() const
 {
     string childrenList = "";
     for (TrieNode *child : children)
@@ -104,7 +112,12 @@ string TrieNode::getChildrenString()
     return childrenList;
 }
 
-vector<TrieNode *> TrieNode::getChildren()
+vector<TrieNode *> TrieNode::getChildren() const
 {
     return children;
+}
+
+string TrieNode::getLabel() const
+{
+    return label;
 }

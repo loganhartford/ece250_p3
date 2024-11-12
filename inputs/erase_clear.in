@@ -1,0 +1,23 @@
+ERASE living
+PRINT
+INSERT living
+PRINT
+INSERT non living
+PRINT
+ERASE Living
+PRINT
+ERASE living
+PRINT
+CLEAR
+CLEAR
+ERASE living
+PRINT
+INSERT living
+PRINT
+INSERT non living
+PRINT
+ERASE Living
+PRINT
+ERASE living
+PRINT
+EXIT

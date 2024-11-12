@@ -12,6 +12,21 @@ Trie::~Trie()
     delete root;
 }
 
+void Trie::setTerminal(TrieNode *node, bool terminal)
+{
+    // Update the size of the trie
+    if (terminal and (terminal != node->isTerminal()))
+    {
+        size++;
+    }
+    else if (!terminal and (terminal != node->isTerminal()))
+    {
+        size--;
+    }
+
+    node->setTerminal(terminal);
+}
+
 bool Trie::insert(const string &classification)
 {
     TrieNode *current = root;
@@ -26,16 +41,16 @@ bool Trie::insert(const string &classification)
             current->addChild(label);
         }
         // Internal nodes can't be terminal
-        current->isTerminal = false;
+        setTerminal(current, false);
         current = current->getChild(label);
     }
 
     // If the classification already exists, return false
-    if (current->isTerminal)
+    if (current->isTerminal())
     {
         return false;
     }
-    current->isTerminal = true;
+    setTerminal(current, true);
     return true;
 }
 
@@ -56,7 +71,7 @@ bool Trie::erase(const string &classification)
         current = current->getChild(label);
     }
 
-    if (!current->isTerminal)
+    if (!current->isTerminal())
     {
         return false;
     }
@@ -64,11 +79,11 @@ bool Trie::erase(const string &classification)
 
     if (parent->hasChildren())
     {
-        parent->isTerminal = false;
+        setTerminal(parent, false);
     }
     else
     {
-        parent->isTerminal = true;
+        setTerminal(parent, true);
     }
     return true;
 }
@@ -105,7 +120,7 @@ string Trie::classify(const string &input)
 
 void Trie::printHelper(TrieNode *node, string &currentClassification, vector<string> &classifications) const
 {
-    if (node->isTerminal)
+    if (node->isTerminal())
     {
         classifications.push_back(currentClassification);
     }
@@ -119,7 +134,7 @@ void Trie::printHelper(TrieNode *node, string &currentClassification, vector<str
             {
                 currentClassification += ",";
             }
-            currentClassification += child->label;
+            currentClassification += child->getLabel();
 
             printHelper(child, currentClassification, classifications);
 
@@ -159,12 +174,7 @@ void Trie::clear()
     root = new TrieNode();
 }
 
-int Trie::size() const
+int Trie::getSize() const
 {
-    vector<string> classifications;
-    string currentClassification;
-
-    printHelper(root, currentClassification, classifications);
-
-    return classifications.size();
+    return size;
 }

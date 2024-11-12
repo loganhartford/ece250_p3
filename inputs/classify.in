@@ -1,0 +1,7 @@
+INSERT living
+CLASSIFY dog
+INSERT non living
+CLASSIFY Dog
+INSERT living,animal
+CLASSIFY dog
+EXIT

@@ -1,0 +1,11 @@
+INSERT living
+PRINT
+INSERT living
+PRINT
+INSERT non living
+PRINT
+INSERT living,Animal
+PRINT
+INSERT living,animal
+PRINT
+EXIT

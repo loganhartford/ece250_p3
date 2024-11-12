@@ -11,21 +11,23 @@ class TrieNode
 private:
     static constexpr int MAX_CHILDREN = 15;
     vector<TrieNode *> children;
+    string label = "";
+    bool terminalStatus = false;
 
 public:
-    string label;
-    bool isTerminal;
-
     TrieNode();
     ~TrieNode();
 
-    bool isChild(string label);
+    bool isTerminal() const;
+    void setTerminal(bool terminal);
+    bool isChild(string label) const;
     bool addChild(string label);
     bool removeChild(string label);
-    bool hasChildren();
-    TrieNode *getChild(string label);
-    string getChildrenString();
-    vector<TrieNode *> getChildren();
+    bool hasChildren() const;
+    TrieNode *getChild(string label) const;
+    string getChildrenString() const;
+    vector<TrieNode *> getChildren() const;
+    string getLabel() const;
 };
 
 #endif

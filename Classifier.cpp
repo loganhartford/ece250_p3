@@ -110,5 +110,5 @@ void Classifier::clear()
 
 int Classifier::size() const
 {
-    return trie->size();
+    return trie->getSize();
 }
