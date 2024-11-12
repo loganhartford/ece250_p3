@@ -25,6 +25,8 @@ bool Trie::insert(const string &classification)
         {
             current->addChild(label);
         }
+        // Internal nodes can't be terminal
+        current->isTerminal = false;
         current = current->getChild(label);
     }
 
@@ -139,11 +141,12 @@ void Trie::print() const
 
     for (size_t i = 0; i < classifications.size(); ++i)
     {
-        cout << classifications[i];
-        if (i != classifications.size() - 1)
-        {
-            cout << "_";
-        }
+        cout << classifications[i] << "_";
+        ;
+        // if (i != classifications.size() - 1)
+        // {
+        //     cout << "_";
+        // }
     }
     cout << endl;
 }

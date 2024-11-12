@@ -24,7 +24,7 @@ int main()
 		else if (command == "INSERT")
 		{
 			string classification;
-			if (getline(command_stream, classification))
+			if (getline(command_stream >> ws, classification))
 			{
 				cout << classifier.insert(classification) << endl;
 			}
@@ -32,7 +32,7 @@ int main()
 		else if (command == "CLASSIFY")
 		{
 			string input, output;
-			if (getline(command_stream, input))
+			if (getline(command_stream >> ws, input))
 			{
 				cout << classifier.classify(input) << endl;
 			}
@@ -40,7 +40,7 @@ int main()
 		else if (command == "ERASE")
 		{
 			string classification;
-			if (getline(command_stream, classification))
+			if (getline(command_stream >> ws, classification))
 			{
 				cout << classification << endl;
 			}
