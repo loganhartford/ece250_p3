@@ -73,20 +73,42 @@ string Classifier::classify(const string &input)
     }
 }
 
-bool Classifier::erase(const string &classification)
+string Classifier::erase(const string &classification)
 {
     try
     {
         validateInput(classification);
-        return trie->erase(classification);
+        if (trie->erase(classification))
+        {
+            return "success";
+        }
+        else
+        {
+            return "failure";
+        }
     }
     catch (const IllegalArgument &e)
     {
-        return false;
+        return e.what();
     }
 }
 
 void Classifier::print() const
 {
     trie->print();
+}
+
+bool Classifier::empty() const
+{
+    return trie->empty();
+}
+
+void Classifier::clear()
+{
+    trie->clear();
+}
+
+int Classifier::size() const
+{
+    return trie->size();
 }

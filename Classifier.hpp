@@ -19,7 +19,7 @@ public:
     void load(const string &filename);
     string insert(const string &classification);
     string classify(const string &input);
-    bool erase(const string &classification);
+    string erase(const string &classification);
     void print() const;
     bool empty() const;
     void clear();

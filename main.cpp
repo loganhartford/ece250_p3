@@ -42,7 +42,7 @@ int main()
 			string classification;
 			if (getline(command_stream >> ws, classification))
 			{
-				cout << classification << endl;
+				cout << classifier.erase(classification) << endl;
 			}
 		}
 		else if (command == "PRINT")
@@ -51,15 +51,16 @@ int main()
 		}
 		else if (command == "EMPTY")
 		{
-			cout << "empty " << endl;
+			cout << "empty " << classifier.empty() << endl;
 		}
 		else if (command == "CLEAR")
 		{
+			classifier.clear();
 			cout << "success" << endl;
 		}
 		else if (command == "SIZE")
 		{
-			cout << "number of classifications is " << endl;
+			cout << "number of classifications is " << classifier.size() << endl;
 		}
 		else if (command == "EXIT")
 		{

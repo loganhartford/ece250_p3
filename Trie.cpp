@@ -41,38 +41,34 @@ bool Trie::insert(const string &classification)
 
 bool Trie::erase(const string &classification)
 {
-    vector<TrieNode *> path;
     TrieNode *current = root;
+    TrieNode *parent = nullptr;
     istringstream stream(classification);
     string label;
 
-    // Traverse the trie and track the traversed path
     while (getline(stream, label, ','))
     {
         if (!current->isChild(label))
         {
             return false;
         }
-        path.push_back(current);
+        parent = current;
         current = current->getChild(label);
     }
 
-    // If the classification does not exist, return false
     if (!current->isTerminal)
     {
         return false;
     }
-    current->isTerminal = false;
+    parent->removeChild(label);
 
-    // Remove nodes that are no longer needed
-    for (int i = path.size() - 1; i >= 0; --i)
+    if (parent->hasChildren())
     {
-        TrieNode *parent = path[i];
-        if (!current->hasChildren() && !current->isTerminal)
-        {
-            parent->removeChild(label);
-        }
-        current = parent;
+        parent->isTerminal = false;
+    }
+    else
+    {
+        parent->isTerminal = true;
     }
     return true;
 }
@@ -80,7 +76,7 @@ bool Trie::erase(const string &classification)
 string Trie::classify(const string &input)
 {
     TrieNode *current = root;
-    string classification;
+    string classification = "";
 
     while (current->hasChildren())
     {
@@ -89,11 +85,17 @@ string Trie::classify(const string &input)
         if (current->isChild(nextChild))
         {
             current = current->getChild(nextChild);
-            classification += nextChild + ",";
+            if (classification == "")
+            {
+                classification = nextChild;
+            }
+            else
+            {
+                classification += "," + nextChild;
+            }
         }
         else
         {
-            classification += nextChild;
             break;
         }
     }
@@ -142,11 +144,27 @@ void Trie::print() const
     for (size_t i = 0; i < classifications.size(); ++i)
     {
         cout << classifications[i] << "_";
-        ;
-        // if (i != classifications.size() - 1)
-        // {
-        //     cout << "_";
-        // }
     }
     cout << endl;
+}
+
+bool Trie::empty() const
+{
+    return !root->hasChildren();
+}
+
+void Trie::clear()
+{
+    delete root;
+    root = new TrieNode();
+}
+
+int Trie::size() const
+{
+    vector<string> classifications;
+    string currentClassification;
+
+    printHelper(root, currentClassification, classifications);
+
+    return classifications.size();
 }

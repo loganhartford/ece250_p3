@@ -91,7 +91,14 @@ string TrieNode::getChildrenString()
     {
         if (child != nullptr)
         {
-            childrenList += child->label + ",";
+            if (childrenList == "")
+            {
+                childrenList += child->label;
+            }
+            else
+            {
+                childrenList += "," + child->label;
+            }
         }
     }
     return childrenList;
