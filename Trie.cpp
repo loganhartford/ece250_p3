@@ -66,36 +66,45 @@ bool Trie::insert(const string &classification)
 bool Trie::erase(const string &classification)
 {
     TrieNode *current = root;
-    TrieNode *parent = nullptr;
+    vector<TrieNode *> path; // To keep track of the nodes along the path
     istringstream stream(classification);
     string label;
 
+    // Traverse the trie and record the path
     while (getline(stream, label, ','))
     {
         if (!current->isChild(label))
         {
-            return false;
+            return false; // Classification not found
         }
-        parent = current;
         current = current->getChild(label);
+        path.push_back(current);
     }
 
     if (!current->isTerminal())
     {
-        return false;
+        return false; // Classification not found
     }
 
-    setTerminal(current, false);
-    parent->removeChild(current);
+    setTerminal(current, false); // Unmark the terminal node
 
-    if (parent->hasChildren())
+    // Clean up unnecessary nodes
+    for (int i = path.size() - 1; i >= 0; --i)
     {
-        setTerminal(parent, false);
+        TrieNode *node = path[i];
+        TrieNode *parent = (i > 0) ? path[i - 1] : root;
+
+        if (!node->hasChildren() && !node->isTerminal())
+        {
+            parent->removeChild(node);
+            delete node;
+        }
+        else
+        {
+            break; // Stop if the node is needed
+        }
     }
-    else
-    {
-        setTerminal(parent, true);
-    }
+
     return true;
 }
 
