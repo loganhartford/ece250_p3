@@ -5,7 +5,7 @@
 #include <string>
 using namespace std;
 
-class IllegalArgument : public exception
+class illegal_exception : public exception
 {
 public:
     const char *what() const noexcept override

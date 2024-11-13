@@ -4,7 +4,7 @@
 #include <fstream>
 
 #include "Trie.hpp"
-#include "IllegalArgument.hpp"
+#include "illegal_exception.hpp"
 
 class Classifier
 {

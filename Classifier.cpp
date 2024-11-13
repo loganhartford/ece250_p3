@@ -16,7 +16,7 @@ void Classifier::validateInput(const string &input)
     {
         if (isupper(static_cast<unsigned char>(ch)))
         {
-            throw IllegalArgument();
+            throw illegal_exception();
         }
     }
 }
@@ -54,7 +54,7 @@ string Classifier::insert(const string &classification)
             return "failure";
         }
     }
-    catch (const IllegalArgument &e)
+    catch (const illegal_exception &e)
     {
         return e.what();
     }
@@ -67,7 +67,7 @@ string Classifier::classify(const string &input)
         validateInput(input);
         return trie->classify(input);
     }
-    catch (const IllegalArgument &e)
+    catch (const illegal_exception &e)
     {
         return e.what();
     }
@@ -87,7 +87,7 @@ string Classifier::erase(const string &classification)
             return "failure";
         }
     }
-    catch (const IllegalArgument &e)
+    catch (const illegal_exception &e)
     {
         return e.what();
     }
