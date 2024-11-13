@@ -45,17 +45,15 @@ bool TrieNode::addChild(string label)
         return false;
     }
 
-    if (numChildren + 1 > MAX_CHILDREN)
+    for (TrieNode *&child : children)
     {
-        return false;
-    }
-
-    if (children[numChildren] == nullptr)
-    {
-        children[numChildren] = new TrieNode();
-        children[numChildren]->label = label;
-        numChildren++;
-        return true;
+        if (child == nullptr)
+        {
+            child = new TrieNode();
+            child->label = label;
+            numChildren++;
+            return true;
+        }
     }
     return false;
 }
