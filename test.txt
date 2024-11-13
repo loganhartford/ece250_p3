@@ -1,0 +1,6 @@
+living
+nonliving
+living,from plants
+living,from plants
+living,from animals
+

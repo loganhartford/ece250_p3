@@ -14,6 +14,10 @@ Trie::~Trie()
 
 void Trie::setTerminal(TrieNode *node, bool terminal)
 {
+    if (node == root)
+    {
+        return;
+    }
     // Update the size of the trie
     if (terminal and (terminal != node->isTerminal()))
     {
@@ -24,6 +28,7 @@ void Trie::setTerminal(TrieNode *node, bool terminal)
         size--;
     }
 
+    // Calling the nodes methods, not a recursive call
     node->setTerminal(terminal);
 }
 
@@ -80,20 +85,14 @@ bool Trie::erase(const string &classification)
         return false;
     }
 
-    if (parent->removeChild(current))
-    {
-        size--;
-    }
-    else
-    {
-        return false;
-    }
+    setTerminal(current, false);
+    parent->removeChild(current);
 
     if (parent->hasChildren())
     {
         setTerminal(parent, false);
     }
-    else if (parent != root)
+    else
     {
         setTerminal(parent, true);
     }

@@ -26,8 +26,6 @@ void Classifier::load(const string &filename)
     ifstream file(filename);
     if (!file.is_open())
     {
-        // Delete this later
-        cerr << "Error: Could not open file " << filename << endl;
         return;
     }
 

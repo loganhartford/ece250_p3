@@ -1,14 +1,10 @@
-ERASE 
 SIZE
 EMPTY
-INSERT living
-INSERT living2
-INSERT living,animal
-EMPTY
+PRINT
+LOAD test.txt
 SIZE
-ERASE living,animal
-ERASE living
-ERASE living2
 EMPTY
+PRINT
+LOAD simple_classes.txt
 SIZE
 EXIT
