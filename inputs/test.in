@@ -1,10 +1,6 @@
-SIZE
-EMPTY
-PRINT
-LOAD test.txt
-SIZE
-EMPTY
-PRINT
-LOAD simple_classes.txt
+INSERT  
+INSERT animal
+CLASSIFY D
+ERASE   animal
 SIZE
 EXIT
